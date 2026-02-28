@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jomin K Mathew — Full Stack Software Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress"></div>
+
+  <!-- Click Spark Container -->
+  <div id="clickSparks" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <!-- Loader – Developer Workspace Boot -->
+  <div id="loader">
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Running Character -->
+    <div class="runner-track">
+      <div class="runner" id="runner">
+        <div class="runner-head"></div>
+        <div class="runner-body">
+          <div class="runner-arm runner-arm-l"></div>
+          <div class="runner-arm runner-arm-r"></div>
+          <div class="runner-torso"></div>
+          <div class="runner-leg runner-leg-l"></div>
+          <div class="runner-leg runner-leg-r"></div>
+        </div>
+        <div class="runner-glow"></div>
+        <div class="runner-particles" id="runnerParticles"></div>
+      </div>
+      <div class="runner-ground"></div>
+    </div>
+
+    <div class="loader-content">
+      <div class="dev-console" id="devConsole">
+        <div class="console-header">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+          <span class="console-title">jomin@dev-station: ~/portfolio</span>
+        </div>
+        <div class="console-body" id="consoleBody"></div>
+      </div>
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+      <p class="loader-status">INITIALIZING WORKSPACE<span class="blink">_</span></p>
+    </div>
+  </div>
+
+  <!-- 3D Particle Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Floating Code Snippets Background -->
+  <div id="floating-code" aria-hidden="true"></div>
+
+  <!-- Mouse Glow -->
+  <div id="mouse-glow"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <img src="IMG_2657.JPG" alt="Jomin" class="nav-avatar" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero" data-text="HOME">HOME</a></li>
+      <li><a href="#about" data-text="ABOUT">ABOUT</a></li>
+      <li><a href="#experience" data-text="EXPERIENCE">EXPERIENCE</a></li>
+      <li><a href="#skills" data-text="SKILLS">SKILLS</a></li>
+      <li><a href="#projects" data-text="PROJECTS">PROJECTS</a></li>
+      <li><a href="#contact" data-text="CONTACT">CONTACT</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-tag">&lt;engineer&gt;</div>
+      <p class="hero-greeting" data-animate="fade-right">HELLO WORLD, I'M</p>
+      <h1 class="hero-name" data-animate="glitch">
+        <span class="name-line">Jomin K</span>
+        <span class="name-line accent">Mathew</span>
+      </h1>
+      <p class="hero-role">Full Stack Software Engineer</p>
+
+      <!-- Live Terminal — real commands from tech stack -->
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">jkm@suntec:~</span>
+        </div>
+        <div class="terminal-body">
+          <span class="terminal-prompt">$</span>
+          <span class="typewriter"></span>
+          <span class="terminal-cursor">█</span>
+        </div>
+      </div>
+
+      <div class="hero-buttons" data-animate="fade-up">
+        <a href="#projects" class="btn btn-cyber">
+          <span>VIEW PROJECTS</span>
+          <div class="btn-glitch"></div>
+        </a>
+        <a href="#contact" class="btn btn-outline-cyber">
+          <span>CONTACT ME</span>
+        </a>
+        <a href="Jomin K Mathew.pdf" class="btn btn-outline-cyber btn-resume" target="_blank" download>
+          <span><i class="fa-solid fa-download"></i> RESUME</span>
+        </a>
+      </div>
+      <div class="hero-tag">&lt;/engineer&gt;</div>
+    </div>
+
+    <!-- Floating HUD elements -->
+    <div class="hud-element hud-1">
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" /></svg>
+      <span>STATUS: ONLINE</span>
+    </div>
+    <div class="hud-element hud-2">
+      <div class="hud-lines"><span></span><span></span><span></span><span></span></div>
+      <span>BUILD: PASSING</span>
+    </div>
+    <div class="hud-element hud-3">
+      <i class="fa-brands fa-docker"></i>
+      <span>CONTAINERS: 3</span>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-number">01</span>
+        <h2 class="section-title">ABOUT<span class="accent">_ME</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-image" data-animate="fade-right">
+          <div class="cyber-frame">
+            <div class="frame-corner tl"></div>
+            <div class="frame-corner tr"></div>
+            <div class="frame-corner bl"></div>
+            <div class="frame-corner br"></div>
+            <img src="IMG_2657.JPG" alt="Jomin K Mathew" class="about-photo" />
+            <div class="scan-line"></div>
+          </div>
+          <div class="server-status-mini">
+            <div class="status-dot pulse-green"></div>
+            <span>JBoss EAP — Running on :8080</span>
+          </div>
+        </div>
+        <div class="about-text" data-animate="fade-left">
+          <div class="about-terminal-line">
+            <span class="prompt">&gt;</span> cat about.txt
+          </div>
+          <p>
+            I'm a <span class="highlight">Full Stack Software Engineer</span> at
+            <span class="highlight">SunTec Business Solutions</span>, Trivandrum, with 3+ years
+            of hands-on experience building enterprise-grade applications in the
+            <span class="highlight">banking &amp; fintech</span> domain.
+          </p>
+          <p>
+            I architect robust back-end systems with <span class="highlight">Java (Spring Boot / MVC)</span>,
+            craft responsive front-ends using <span class="highlight">React.js</span>, design and consume
+            <span class="highlight">REST APIs</span>, and manage full CI/CD pipelines with
+            <span class="highlight">Jenkins &amp; Docker</span>.
+          </p>
+          <div class="about-stats">
+            <div class="stat-card" data-tilt>
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">YEARS EXP</div>
+              <div class="stat-glow"></div>
+            </div>
+            <div class="stat-card" data-tilt>
+              <div class="stat-number" data-count="5">0</div>
+              <div class="stat-label">PROJECTS</div>
+              <div class="stat-glow"></div>
+            </div>
+            <div class="stat-card" data-tilt>
+              <div class="stat-icon"><i class="fa-solid fa-building"></i></div>
+              <div class="stat-label">SUNTEC BIZ</div>
+              <div class="stat-glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE — Live CI/CD Pipeline ===== -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-number">02</span>
+        <h2 class="section-title">WORK<span class="accent">_EXPERIENCE</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- CI/CD Pipeline Animation -->
+      <div class="pipeline-wrapper" data-animate="fade-up">
+        <div class="pipeline-title"><i class="fa-brands fa-jenkins"></i> DEPLOYMENT PIPELINE</div>
+        <div class="pipeline">
+          <div class="pipeline-stage" data-stage="code">
+            <div class="stage-icon"><i class="fa-solid fa-code"></i></div>
+            <div class="stage-label">CODE</div>
+            <div class="stage-tech">Java / React</div>
+          </div>
+          <div class="pipeline-connector"><div class="connector-flow"></div></div>
+          <div class="pipeline-stage" data-stage="build">
+            <div class="stage-icon"><i class="fa-solid fa-gears"></i></div>
+            <div class="stage-label">BUILD</div>
+            <div class="stage-tech">Maven</div>
+          </div>
+          <div class="pipeline-connector"><div class="connector-flow"></div></div>
+          <div class="pipeline-stage" data-stage="test">
+            <div class="stage-icon"><i class="fa-solid fa-vial"></i></div>
+            <div class="stage-label">TEST</div>
+            <div class="stage-tech">JUnit</div>
+          </div>
+          <div class="pipeline-connector"><div class="connector-flow"></div></div>
+          <div class="pipeline-stage" data-stage="deploy">
+            <div class="stage-icon"><i class="fa-brands fa-docker"></i></div>
+            <div class="stage-label">DEPLOY</div>
+            <div class="stage-tech">Docker</div>
+          </div>
+          <div class="pipeline-connector"><div class="connector-flow"></div></div>
+          <div class="pipeline-stage" data-stage="live">
+            <div class="stage-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="stage-label">LIVE</div>
+            <div class="stage-tech">Production</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Card -->
+      <div class="exp-card" data-animate="fade-up" data-tilt>
+        <div class="exp-header">
+          <div>
+            <h3 class="exp-role">Software Engineer</h3>
+            <p class="exp-company"><i class="fa-solid fa-building"></i> SunTec Business Solutions, Trivandrum</p>
+          </div>
+          <span class="exp-date">07/2022 — Present</span>
+        </div>
+        <ul class="exp-list">
+          <li><span class="bullet-icon"><i class="fa-brands fa-java"></i></span> Developed enterprise Payment API systems using Spring Boot &amp; RESTful architecture</li>
+          <li><span class="bullet-icon"><i class="fa-brands fa-react"></i></span> Built new product UI components with React.js (Hooks, Redux, Axios, Router)</li>
+          <li><span class="bullet-icon"><i class="fa-solid fa-arrows-rotate"></i></span> Led full migration from Struts 1 → Struts 2, and Struts → Spring Boot framework</li>
+          <li><span class="bullet-icon"><i class="fa-solid fa-file-lines"></i></span> Integrated Jasper Reports for dynamic PDF/Excel report generation</li>
+          <li><span class="bullet-icon"><i class="fa-brands fa-docker"></i></span> Managed CI/CD pipelines with Jenkins, Docker, deployed on JBoss EAP &amp; WildFly</li>
+          <li><span class="bullet-icon"><i class="fa-solid fa-database"></i></span> Worked with Oracle, MySQL &amp; PostgreSQL databases in production environments</li>
+        </ul>
+
+        <!-- Live Docker Status -->
+        <div class="docker-status">
+          <div class="docker-header"><i class="fa-brands fa-docker"></i> DOCKER CONTAINERS</div>
+          <div class="docker-containers" id="dockerContainers">
+            <div class="container-box running">
+              <span class="c-name">suntec-api</span>
+              <span class="c-status">● Running</span>
+              <span class="c-port">:8080</span>
+            </div>
+            <div class="container-box running">
+              <span class="c-name">react-ui</span>
+              <span class="c-status">● Running</span>
+              <span class="c-port">:3000</span>
+            </div>
+            <div class="container-box running">
+              <span class="c-name">oracle-db</span>
+              <span class="c-status">● Running</span>
+              <span class="c-port">:1521</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="edu-grid" data-animate="fade-up">
+        <div class="edu-card" data-tilt>
+          <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h4>Master of Computer Applications</h4>
+          <p>TKM College of Engineering, Kollam</p>
+          <span class="edu-year">2020 — 2022</span>
+        </div>
+        <div class="edu-card" data-tilt>
+          <div class="edu-icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <h4>BSc Computer Science</h4>
+          <p>Marthoma College, Ayur</p>
+          <span class="edu-year">2017 — 2020</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS — Interactive Tech Stack ===== -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-number">03</span>
+        <h2 class="section-title">TECH<span class="accent">_STACK</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Skill Category Cards with Live Code -->
+      <div class="skill-categories" data-animate="fade-up">
+
+        <div class="skill-cat-card" data-tilt>
+          <div class="cat-header back-end">
+            <i class="fa-brands fa-java"></i>
+            <h3>Back-End</h3>
+          </div>
+          <div class="cat-items">
+            <span class="tech-chip"><i class="fa-brands fa-java"></i> Java</span>
+            <span class="tech-chip"><i class="fa-solid fa-leaf"></i> Spring Boot</span>
+            <span class="tech-chip"><i class="fa-solid fa-leaf"></i> Spring MVC</span>
+            <span class="tech-chip"><i class="fa-solid fa-plug"></i> REST API</span>
+            <span class="tech-chip"><i class="fa-solid fa-cube"></i> Maven</span>
+          </div>
+          <div class="live-code">
+            <pre><code><span class="kw">@RestController</span>
+<span class="kw">@RequestMapping</span>(<span class="str">"/api/v1"</span>)
+<span class="kw">public class</span> <span class="cls">PaymentController</span> {
+  <span class="kw">@Autowired</span>
+  <span class="cls">PaymentService</span> service;
+
+  <span class="kw">@PostMapping</span>(<span class="str">"/pay"</span>)
+  <span class="kw">public</span> ResponseEntity&lt;?&gt; process(
+    <span class="kw">@RequestBody</span> <span class="cls">PaymentDTO</span> dto) {
+    <span class="kw">return</span> ResponseEntity.ok(
+      service.processPayment(dto));
+  }
+}</code></pre>
+            <div class="code-scan-line"></div>
+          </div>
+        </div>
+
+        <div class="skill-cat-card" data-tilt>
+          <div class="cat-header front-end">
+            <i class="fa-brands fa-react"></i>
+            <h3>Front-End</h3>
+          </div>
+          <div class="cat-items">
+            <span class="tech-chip"><i class="fa-brands fa-react"></i> React.js</span>
+            <span class="tech-chip"><i class="fa-brands fa-js"></i> JavaScript</span>
+            <span class="tech-chip"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+            <span class="tech-chip"><i class="fa-solid fa-arrows-rotate"></i> Redux</span>
+          </div>
+          <div class="live-code">
+            <pre><code><span class="kw">const</span> <span class="cls">PaymentForm</span> = () =&gt; {
+  <span class="kw">const</span> [amount, setAmount] =
+    <span class="fn">useState</span>(<span class="str">''</span>);
+  <span class="kw">const</span> dispatch = <span class="fn">useDispatch</span>();
+
+  <span class="kw">const</span> handleSubmit = <span class="kw">async</span> () =&gt; {
+    <span class="kw">const</span> res = <span class="kw">await</span> axios.<span class="fn">post</span>(
+      <span class="str">'/api/v1/pay'</span>, { amount });
+    dispatch(<span class="fn">setResult</span>(res.data));
+  };
+
+  <span class="kw">return</span> &lt;<span class="cls">CyberInput</span> .../&gt;;
+};</code></pre>
+            <div class="code-scan-line"></div>
+          </div>
+        </div>
+
+        <div class="skill-cat-card" data-tilt>
+          <div class="cat-header devops">
+            <i class="fa-brands fa-docker"></i>
+            <h3>DevOps &amp; DB</h3>
+          </div>
+          <div class="cat-items">
+            <span class="tech-chip"><i class="fa-brands fa-docker"></i> Docker</span>
+            <span class="tech-chip"><i class="fa-brands fa-jenkins"></i> Jenkins</span>
+            <span class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+            <span class="tech-chip"><i class="fa-solid fa-database"></i> Oracle</span>
+            <span class="tech-chip"><i class="fa-solid fa-database"></i> MySQL</span>
+            <span class="tech-chip"><i class="fa-solid fa-database"></i> Postgres</span>
+            <span class="tech-chip"><i class="fa-solid fa-server"></i> JBoss</span>
+          </div>
+          <div class="live-code">
+            <pre><code><span class="kw">FROM</span> jboss/wildfly:latest
+<span class="kw">COPY</span> target/payment-api.war \
+  /opt/jboss/wildfly/standalone/
+  deployments/
+<span class="kw">EXPOSE</span> <span class="str">8080</span>
+
+<span class="cmt"># docker-compose.yml</span>
+<span class="kw">services</span>:
+  <span class="cls">api</span>:
+    build: .
+    ports: [<span class="str">"8080:8080"</span>]
+  <span class="cls">db</span>:
+    image: oracle/database:19.3
+    ports: [<span class="str">"1521:1521"</span>]</code></pre>
+            <div class="code-scan-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill Bars -->
+      <div class="skill-bars" data-animate="fade-up">
+        <div class="skill-row">
+          <div class="skill-info"><span><i class="fa-brands fa-java"></i> Java / Spring Boot</span><span class="skill-percent">90%</span></div>
+          <div class="skill-track"><div class="skill-fill neon-fill" data-width="90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span><i class="fa-brands fa-react"></i> React.js / Redux</span><span class="skill-percent">85%</span></div>
+          <div class="skill-track"><div class="skill-fill neon-fill" data-width="85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span><i class="fa-solid fa-plug"></i> REST API / Microservices</span><span class="skill-percent">88%</span></div>
+          <div class="skill-track"><div class="skill-fill neon-fill" data-width="88%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span><i class="fa-solid fa-database"></i> Oracle / MySQL / Postgres</span><span class="skill-percent">80%</span></div>
+          <div class="skill-track"><div class="skill-fill neon-fill" data-width="80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span><i class="fa-brands fa-docker"></i> Docker / Jenkins CI/CD</span><span class="skill-percent">78%</span></div>
+          <div class="skill-track"><div class="skill-fill neon-fill" data-width="78%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-info"><span><i class="fa-brands fa-js"></i> JavaScript / HTML / CSS</span><span class="skill-percent">85%</span></div>
+          <div class="skill-track"><div class="skill-fill neon-fill" data-width="85%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS — Real Projects with Live API Monitor ===== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-number">04</span>
+        <h2 class="section-title">MY<span class="accent">_PROJECTS</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Projects Layout: Main + Side Panel -->
+      <div class="projects-layout">
+
+      <!-- LEFT: Project Cards -->
+      <div class="projects-main">
+      <div class="projects-grid">
+        <div class="project-card" data-tilt data-animate="fade-up">
+          <div class="project-image">
+            <div class="project-placeholder"><i class="fa-solid fa-credit-card"></i><div class="project-pulse"></div></div>
+            <div class="project-scan"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-id">PROJECT_01</div>
+            <h4>Payment API Development</h4>
+            <p>Enterprise payment processing system with RESTful APIs handling multi-currency transactions, validation, and settlement workflows.</p>
+            <div class="project-tags">
+              <span>Spring Boot</span><span>REST API</span><span>Oracle</span><span>JBoss</span>
+            </div>
+          </div>
+          <div class="card-border"></div>
+        </div>
+
+        <div class="project-card" data-tilt data-animate="fade-up">
+          <div class="project-image">
+            <div class="project-placeholder"><i class="fa-solid fa-window-restore"></i><div class="project-pulse"></div></div>
+            <div class="project-scan"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-id">PROJECT_02</div>
+            <h4>New Product UI Component</h4>
+            <p>Built a responsive UI module using React.js with Hooks, Redux state management, Axios for API calls, and React Router navigation.</p>
+            <div class="project-tags">
+              <span>React.js</span><span>Redux</span><span>Axios</span><span>Router</span>
+            </div>
+          </div>
+          <div class="card-border"></div>
+        </div>
+
+        <div class="project-card" data-tilt data-animate="fade-up">
+          <div class="project-image">
+            <div class="project-placeholder"><i class="fa-solid fa-arrows-rotate"></i><div class="project-pulse"></div></div>
+            <div class="project-scan"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-id">PROJECT_03</div>
+            <h4>Struts → Spring Migration</h4>
+            <p>Led full migration from Struts 1 to Struts 2 and subsequently to Spring Boot, modernizing legacy codebase and improving performance.</p>
+            <div class="project-tags">
+              <span>Spring Boot</span><span>Struts</span><span>Maven</span><span>Jenkins</span>
+            </div>
+          </div>
+          <div class="card-border"></div>
+        </div>
+
+        <div class="project-card" data-tilt data-animate="fade-up">
+          <div class="project-image">
+            <div class="project-placeholder"><i class="fa-solid fa-file-pdf"></i><div class="project-pulse"></div></div>
+            <div class="project-scan"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-id">PROJECT_04</div>
+            <h4>Jasper Reports Integration</h4>
+            <p>Integrated Jasper Reports for dynamic generation of PDF/Excel reports from live database queries, with parameterized templates.</p>
+            <div class="project-tags">
+              <span>Jasper</span><span>Java</span><span>Oracle</span><span>REST</span>
+            </div>
+          </div>
+          <div class="card-border"></div>
+        </div>
+
+        <div class="project-card" data-tilt data-animate="fade-up">
+          <div class="project-image">
+            <div class="project-placeholder"><i class="fa-solid fa-rocket"></i><div class="project-pulse"></div></div>
+            <div class="project-scan"></div>
+          </div>
+          <div class="project-info">
+            <div class="project-id">PROJECT_05</div>
+            <h4>Full Product Migration</h4>
+            <p>Complete product migration from legacy Struts 1 to Struts 2, including DB schema updates, UI overhaul, and deployment pipeline setup.</p>
+            <div class="project-tags">
+              <span>Struts 2</span><span>Docker</span><span>WildFly</span><span>Postgres</span>
+            </div>
+          </div>
+          <div class="card-border"></div>
+        </div>
+      </div>
+      </div>
+
+      <!-- RIGHT: Live Side Panel -->
+      <div class="projects-side">
+
+        <!-- Live API Monitor -->
+        <div class="api-monitor">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">API Monitor — Live</span>
+          </div>
+          <div class="api-log" id="apiLog"></div>
+        </div>
+
+        <!-- Server Metrics Dashboard -->
+        <div class="server-dashboard">
+          <div class="dash-title"><i class="fa-solid fa-chart-area"></i> SERVER METRICS</div>
+          <div class="metric-row">
+            <span class="metric-label">CPU</span>
+            <div class="metric-bar"><div class="metric-fill" id="cpuBar" style="width:0%"></div></div>
+            <span class="metric-val" id="cpuVal">0%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">RAM</span>
+            <div class="metric-bar"><div class="metric-fill ram" id="ramBar" style="width:0%"></div></div>
+            <span class="metric-val" id="ramVal">0%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">DISK</span>
+            <div class="metric-bar"><div class="metric-fill disk" id="diskBar" style="width:0%"></div></div>
+            <span class="metric-val" id="diskVal">0%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">NET</span>
+            <div class="metric-bar"><div class="metric-fill net" id="netBar" style="width:0%"></div></div>
+            <span class="metric-val" id="netVal">0%</span>
+          </div>
+          <div class="dash-uptime"><i class="fa-solid fa-clock"></i> Uptime: <span id="uptimeVal">0d 0h 0m</span></div>
+        </div>
+
+        <!-- Git Commit Feed -->
+        <div class="git-feed">
+          <div class="dash-title"><i class="fa-brands fa-git-alt"></i> RECENT COMMITS</div>
+          <div class="git-log" id="gitLog"></div>
+        </div>
+
+        <!-- Live Database Query -->
+        <div class="db-query-widget">
+          <div class="dash-title"><i class="fa-solid fa-database"></i> LIVE QUERIES</div>
+          <div class="db-log" id="dbLog"></div>
+        </div>
+
+      </div>
+      </div><!-- end projects-layout -->
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-number">05</span>
+        <h2 class="section-title">GET<span class="accent">_IN_TOUCH</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info" data-animate="fade-right">
+          <div class="contact-terminal">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">contact.sh</span>
+            </div>
+            <div class="terminal-body contact-terminal-body">
+              <p><span class="prompt">$</span> echo $EMAIL</p>
+              <p class="terminal-output">jominmathewk@gmail.com</p>
+              <p><span class="prompt">$</span> echo $LOCATION</p>
+              <p class="terminal-output">Trivandrum, Kerala, India</p>
+              <p><span class="prompt">$</span> echo $PHONE</p>
+              <p class="terminal-output">+91 7558805897</p>
+              <p><span class="prompt">$</span> echo $STATUS</p>
+              <p class="terminal-output highlight">Open to opportunities ✓</p>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="mailto:jominmathewk@gmail.com" class="social-link" data-tilt><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/jominkmathew" target="_blank" class="social-link" data-tilt><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/jominkmathew" target="_blank" class="social-link" data-tilt><i class="fa-brands fa-linkedin"></i></a>
+            <a href="tel:+917558805897" class="social-link" data-tilt><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" data-animate="fade-left">
+          <div class="form-group">
+            <label>NAME_</label>
+            <input type="text" name="from_name" required />
+            <div class="input-line"></div>
+          </div>
+          <div class="form-group">
+            <label>EMAIL_</label>
+            <input type="email" name="reply_to" required />
+            <div class="input-line"></div>
+          </div>
+          <div class="form-group">
+            <label>MESSAGE_</label>
+            <textarea rows="5" name="message" required></textarea>
+            <div class="input-line"></div>
+          </div>
+          <button type="submit" class="btn btn-cyber" id="submitBtn">
+            <span>TRANSMIT MESSAGE</span>
+            <div class="btn-glitch"></div>
+          </button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Rocket -->
+  <button id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-rocket"></i>
+    <div class="rocket-flame"></div>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-line"></div>
+    <div class="footer-content">
+      <p>&copy; 2026 Jomin K Mathew — Full Stack Software Engineer</p>
+      <p class="footer-note">DESIGNED & BUILT WITH <span class="accent">&#9829;</span> AND <span class="accent">CODE</span></p>
+    </div>
+  </footer>
+
+  <!-- Libraries (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
