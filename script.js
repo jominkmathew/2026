@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    FUTURISTIC PORTFOLIO – Interactive Engine
    Three.js + GSAP + ScrollTrigger + Vanilla Tilt
    Live Animations: Dev Console, Running Character,
@@ -38,19 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const matrixInterval = setInterval(drawMatrix, 50);
 
-  // Runner particles
+  // Runner dust & spark particles
   const runnerParticles = document.getElementById('runnerParticles');
   let particleInterval;
   if (runnerParticles) {
     particleInterval = setInterval(() => {
-      const p = document.createElement('div');
-      p.className = 'runner-particle';
-      p.style.setProperty('--py', (Math.random() * 40 - 20) + 'px');
-      p.style.top = Math.random() * 40 + 'px';
-      p.style.left = Math.random() * 10 + 'px';
-      runnerParticles.appendChild(p);
-      setTimeout(() => p.remove(), 600);
-    }, 80);
+      // Dust particle
+      const dust = document.createElement('div');
+      dust.className = 'runner-particle dust';
+      dust.style.setProperty('--dx', (-15 - Math.random() * 25) + 'px');
+      dust.style.setProperty('--dy', (-5 + Math.random() * 15) + 'px');
+      dust.style.top = (40 + Math.random() * 15) + 'px';
+      dust.style.left = (10 + Math.random() * 15) + 'px';
+      runnerParticles.appendChild(dust);
+      setTimeout(() => dust.remove(), 500);
+
+      // Occasional spark
+      if (Math.random() > 0.5) {
+        const spark = document.createElement('div');
+        spark.className = 'runner-particle spark';
+        spark.style.setProperty('--dx', (-20 - Math.random() * 30) + 'px');
+        spark.style.setProperty('--dy', (-10 + Math.random() * 20) + 'px');
+        spark.style.top = (35 + Math.random() * 20) + 'px';
+        spark.style.left = (5 + Math.random() * 10) + 'px';
+        runnerParticles.appendChild(spark);
+        setTimeout(() => spark.remove(), 400);
+      }
+    }, 60);
   }
 
   // Dev console simulation – realistic developer workflow
@@ -113,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initGSAP();
     initTypewriter();
     initTilt();
-    initSkillBars();
     initCountUp();
     initHamburger();
     initSmoothScroll();
@@ -130,6 +143,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initTextScramble();
     initBackToTop();
     initSmartNavbar();
+    initMagneticButtons();
+    initScreenGlitch();
+    initShootingStars();
+    initFilmGrain();
+    initCardFlip();
+    initKonamiCode();
+    initCursorTrail();
+    initSectionCurtain();
+    initParallaxTilt();
+    initAchievementToasts();
+    initMiniTerminal();
+    initTimeTheme();
+    initFloatingDock();
+    initParticleText();
+    initHoloCard();
+    initChatBot();
+    initPageTransition();
+    initCinematicTimeline();
+    initHexGrid();
+    initPlayground();
+    initVoiceNav();
   }
 
   // ===================== THREE.JS PARTICLE NETWORK =====================
@@ -402,24 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
         perspective: 1000,
       });
     }
-  }
-
-  // ===================== SKILL BARS =====================
-  function initSkillBars() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const fills = entry.target.querySelectorAll('.neon-fill');
-          fills.forEach(fill => {
-            fill.style.width = fill.dataset.width;
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    const skillSection = document.getElementById('skills');
-    if (skillSection) observer.observe(skillSection);
   }
 
   // ===================== COUNT UP =====================
@@ -1002,6 +1018,1045 @@ document.addEventListener('DOMContentLoaded', () => {
         ticking = true;
       }
     }, { passive: true });
+  }
+
+  // ===================== MAGNETIC BUTTONS =====================
+  function initMagneticButtons() {
+    const magneticEls = document.querySelectorAll('.btn, .social-link');
+
+    magneticEls.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'translate(0, 0)';
+      });
+    });
+  }
+
+  // ===================== SCREEN GLITCH EFFECT =====================
+  function initScreenGlitch() {
+    const glitch = document.getElementById('screenGlitch');
+    if (!glitch) return;
+
+    function triggerGlitch() {
+      glitch.classList.add('active');
+      setTimeout(() => {
+        glitch.classList.remove('active');
+      }, 350);
+    }
+
+    // Random glitch every 12-25 seconds
+    function scheduleGlitch() {
+      const delay = 12000 + Math.random() * 13000;
+      setTimeout(() => {
+        triggerGlitch();
+        scheduleGlitch();
+      }, delay);
+    }
+
+    scheduleGlitch();
+  }
+
+  // ===================== SHOOTING STARS =====================
+  function initShootingStars() {
+    const container = document.getElementById('shootingStars');
+    if (!container) return;
+
+    function spawnStar() {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      star.style.top = Math.random() * 50 + '%';
+      star.style.left = Math.random() * 60 + '%';
+      star.style.width = (80 + Math.random() * 80) + 'px';
+      container.appendChild(star);
+
+      setTimeout(() => star.remove(), 1500);
+    }
+
+    // Spawn a shooting star every 4-9 seconds
+    function scheduleStars() {
+      const delay = 4000 + Math.random() * 5000;
+      setTimeout(() => {
+        spawnStar();
+        scheduleStars();
+      }, delay);
+    }
+
+    scheduleStars();
+  }
+
+  // ===================== FILM GRAIN OVERLAY =====================
+  function initFilmGrain() {
+    // Film grain is pure CSS — just ensure it's visible
+    const grain = document.getElementById('filmGrain');
+    if (grain) grain.style.display = 'block';
+  }
+
+  // ===================== PROJECT CARD FLIP =====================
+  function initCardFlip() {
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Don't flip if clicking a link
+        if (e.target.closest('a')) return;
+        card.classList.toggle('flipped');
+      });
+    });
+  }
+
+  // ===================== KONAMI CODE EASTER EGG =====================
+  function initKonamiCode() {
+    const sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let position = 0;
+    const overlay = document.getElementById('konamiOverlay');
+    const canvas = document.getElementById('konamiCanvas');
+    if (!overlay || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let animFrame;
+
+    document.addEventListener('keydown', (e) => {
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (key === sequence[position]) {
+        position++;
+        if (position === sequence.length) {
+          activateKonami();
+          position = 0;
+        }
+      } else {
+        position = 0;
+      }
+    });
+
+    function activateKonami() {
+      overlay.classList.add('active');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Matrix rain
+      const columns = Math.floor(canvas.width / 16);
+      const drops = Array(columns).fill(1);
+      const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF';
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#39ff14';
+        ctx.font = '14px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(char, i * 16, drops[i] * 16);
+
+          if (drops[i] * 16 > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+
+        animFrame = requestAnimationFrame(drawMatrix);
+      }
+
+      drawMatrix();
+
+      // Auto-close after 5 seconds
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        cancelAnimationFrame(animFrame);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, 5000);
+    }
+  }
+
+  // ===================== CURSOR TRAIL PARTICLES =====================
+  function initCursorTrail() {
+    const canvas = document.getElementById('cursorTrail');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    let mouseX = -100, mouseY = -100;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Spawn particles on move
+      for (let i = 0; i < 2; i++) {
+        particles.push({
+          x: mouseX + (Math.random() - 0.5) * 8,
+          y: mouseY + (Math.random() - 0.5) * 8,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          life: 1,
+          decay: 0.015 + Math.random() * 0.015,
+          size: 1.5 + Math.random() * 2.5,
+          hue: 180 + Math.random() * 40, // cyan range
+        });
+      }
+    });
+
+    function animateTrail() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 100%, 70%, ${p.life * 0.6})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = `hsla(${p.hue}, 100%, 60%, 0.4)`;
+        ctx.fill();
+      }
+
+      // Cap particles
+      if (particles.length > 120) particles.splice(0, particles.length - 120);
+
+      requestAnimationFrame(animateTrail);
+    }
+
+    animateTrail();
+  }
+
+  // ===================== SECTION REVEAL CURTAIN =====================
+  function initSectionCurtain() {
+    const sections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('curtain-open');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    sections.forEach(s => observer.observe(s));
+  }
+
+  // ===================== PARALLAX TILT ON SCROLL =====================
+  function initParallaxTilt() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    const layers = [
+      { sel: '.hero-greeting', speed: 0.3 },
+      { sel: '.hero-name',     speed: 0.15 },
+      { sel: '.hero-role',     speed: 0.25 },
+      { sel: '.hero-terminal', speed: 0.1 },
+      { sel: '.hero-buttons',  speed: 0.2 },
+      { sel: '.hud-element',   speed: 0.35 },
+    ];
+
+    const elements = [];
+    layers.forEach(l => {
+      hero.querySelectorAll(l.sel).forEach(el => {
+        elements.push({ el, speed: l.speed, originalTransform: el.style.transform || '' });
+      });
+    });
+
+    if (!elements.length) return;
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+
+        if (scrollY < heroHeight) {
+          elements.forEach(({ el, speed }) => {
+            const offset = scrollY * speed;
+            el.style.transform = `translateY(${offset}px)`;
+          });
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  // ===================== ACHIEVEMENT TOAST NOTIFICATIONS =====================
+  function initAchievementToasts() {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const achievements = [
+      { trigger: '#hero',       icon: 'fa-solid fa-flag',          msg: 'Welcome to the Matrix!', once: true },
+      { trigger: '#about',      icon: 'fa-solid fa-user-check',    msg: 'Discovered About Section', once: true },
+      { trigger: '#experience', icon: 'fa-solid fa-briefcase',     msg: 'Work Experience Unlocked', once: true },
+      { trigger: '#skills',     icon: 'fa-solid fa-wand-magic-sparkles', msg: 'Tech Stack Revealed!', once: true },
+      { trigger: '#projects',   icon: 'fa-solid fa-trophy',        msg: 'Achievement: Project Explorer', once: true },
+      { trigger: '#contact',    icon: 'fa-solid fa-handshake',     msg: 'Final Boss: Contact Form', once: true },
+    ];
+
+    // Scroll percentage milestones
+    let scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
+
+    window.addEventListener('scroll', () => {
+      const pct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+      [25, 50, 75, 100].forEach(m => {
+        if (pct >= m && !scrollMilestones[m]) {
+          scrollMilestones[m] = true;
+          showToast('fa-solid fa-chart-line', `Scrolled ${m}% of the page!`);
+        }
+      });
+    }, { passive: true });
+
+    achievements.forEach(a => {
+      const el = document.querySelector(a.trigger);
+      if (!el) return;
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            showToast(a.icon, a.msg);
+            if (a.once) obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      obs.observe(el);
+    });
+
+    function showToast(icon, msg) {
+      const toast = document.createElement('div');
+      toast.className = 'achievement-toast';
+      toast.innerHTML = `
+        <div class="toast-icon"><i class="${icon}"></i></div>
+        <div class="toast-content">
+          <span class="toast-label">Achievement</span>
+          <span class="toast-msg">${msg}</span>
+        </div>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4200);
+    }
+  }
+
+  // ===================== INTERACTIVE MINI TERMINAL =====================
+  function initMiniTerminal() {
+    const terminal = document.getElementById('miniTerminal');
+    const input = document.getElementById('miniTermInput');
+    const output = document.getElementById('miniTermOutput');
+    const toggle = document.getElementById('miniTermToggle');
+    if (!terminal || !input) return;
+
+    // Start collapsed
+    terminal.classList.add('collapsed');
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      terminal.classList.toggle('collapsed');
+      if (!terminal.classList.contains('collapsed')) {
+        setTimeout(() => input.focus(), 300);
+      }
+    });
+
+    const commands = {
+      help: () => `<span class="term-result">Available commands:<br>&nbsp;&nbsp;about &nbsp;- Who is Jomin?<br>&nbsp;&nbsp;skills - Tech stack<br>&nbsp;&nbsp;contact - Get in touch<br>&nbsp;&nbsp;projects - My work<br>&nbsp;&nbsp;joke &nbsp; - Dev humor<br>&nbsp;&nbsp;goto &lt;section&gt; - Jump to section<br>&nbsp;&nbsp;time &nbsp; - Current time<br>&nbsp;&nbsp;clear &nbsp;- Clear terminal</span>`,
+      about: () => `<span class="term-result">Jomin K Mathew — Full Stack Software Engineer @ SunTec Business Solutions. 3+ years in Java, Spring Boot, React.js, Docker & CI/CD.</span>`,
+      skills: () => `<span class="term-result">Java ██████████ 90%<br>React ████████░░ 85%<br>REST API █████████░ 88%<br>Docker ████████░░ 78%<br>Oracle ████████░░ 80%</span>`,
+      contact: () => `<span class="term-result">📧 jominmathewk@gmail.com<br>📱 +91 7558805897<br>🔗 github.com/jominkmathew<br>📍 Trivandrum, Kerala</span>`,
+      projects: () => `<span class="term-result">1. Payment API Development<br>2. React UI Components<br>3. Struts → Spring Migration<br>4. Jasper Reports Integration<br>5. Full Product Migration</span>`,
+      joke: () => {
+        const jokes = [
+          '"Why do programmers prefer dark mode? Because light attracts bugs."',
+          '"git commit -m \\"fixed bug\\" — narrator: he did not fix the bug."',
+          '"There are 10 types of people: those who understand binary and those who don\'t."',
+          '"// This code works. I don\'t know why."',
+          '"It works on my machine! — Every developer ever"',
+          '"A SQL query walks into a bar, sees two tables, and asks: Can I JOIN you?"',
+          '"Why was the JavaScript developer sad? Because he didn\'t Node how to Express himself."',
+        ];
+        return `<span class="term-result">${jokes[Math.floor(Math.random() * jokes.length)]}</span>`;
+      },
+      time: () => `<span class="term-result">${new Date().toLocaleString()}</span>`,
+      clear: () => '__CLEAR__',
+      goto: (args) => {
+        const section = args[0];
+        const valid = ['hero','about','experience','skills','projects','contact'];
+        if (valid.includes(section)) {
+          document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+          return `<span class="term-result">Navigating to #${section}...</span>`;
+        }
+        return `<span class="term-error">Unknown section. Try: ${valid.join(', ')}</span>`;
+      },
+    };
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      const raw = input.value.trim();
+      if (!raw) return;
+
+      // Echo command
+      addLine(`<span class="term-cmd">$ ${raw}</span>`);
+
+      const parts = raw.toLowerCase().split(/\s+/);
+      const cmd = parts[0];
+      const args = parts.slice(1);
+
+      const handler = commands[cmd];
+      if (handler) {
+        const result = typeof handler === 'function' ? handler(args) : handler;
+        if (result === '__CLEAR__') {
+          output.innerHTML = '<div class="term-line"><span class="term-system">Terminal cleared.</span></div>';
+        } else {
+          addLine(result);
+        }
+      } else {
+        addLine(`<span class="term-error">Command not found: ${cmd}. Type 'help' for commands.</span>`);
+      }
+
+      input.value = '';
+    });
+
+    function addLine(html) {
+      const line = document.createElement('div');
+      line.className = 'term-line';
+      line.innerHTML = html;
+      output.appendChild(line);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // Make terminal draggable
+    let isDragging = false, dragX, dragY;
+    const header = terminal.querySelector('.mini-term-header');
+
+    header.addEventListener('mousedown', (e) => {
+      if (e.target === toggle || e.target.closest('.mini-term-toggle')) return;
+      isDragging = true;
+      dragX = e.clientX - terminal.offsetLeft;
+      dragY = e.clientY - terminal.offsetTop;
+      terminal.style.transition = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      terminal.style.left = (e.clientX - dragX) + 'px';
+      terminal.style.top = (e.clientY - dragY) + 'px';
+      terminal.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      terminal.style.transition = '';
+    });
+  }
+
+  // ===================== TIME-OF-DAY DYNAMIC THEME =====================
+  function initTimeTheme() {
+    const hour = new Date().getHours();
+    const root = document.documentElement;
+
+    // 6-11: Morning (warm orange/gold), 12-17: Day (cyan/blue), 18-21: Dusk (purple/pink), 22-5: Night (deep cyan/green)
+    if (hour >= 6 && hour < 12) {
+      root.style.setProperty('--neon-cyan', '#ff9f43');
+      root.style.setProperty('--neon-purple', '#ee5a24');
+      root.style.setProperty('--neon-green', '#ffc312');
+    } else if (hour >= 18 && hour < 22) {
+      root.style.setProperty('--neon-cyan', '#c56cf0');
+      root.style.setProperty('--neon-purple', '#ff6b81');
+      root.style.setProperty('--neon-green', '#7158e2');
+    }
+    // 12-17 and 22-5 keep the default cyberpunk cyan/purple/green
+  }
+
+  // ===================== FLOATING NAVIGATION DOCK =====================
+  function initFloatingDock() {
+    const dock = document.getElementById('floatingDock');
+    if (!dock) return;
+
+    // Show dock after scrolling past hero
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight * 0.5) {
+        dock.classList.add('visible');
+      } else {
+        dock.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    // Smooth scroll
+    dock.querySelectorAll('.dock-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = item.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Magnify neighbors on hover
+    const items = dock.querySelectorAll('.dock-item');
+    items.forEach((item, i) => {
+      item.addEventListener('mouseenter', () => {
+        items.forEach((it, j) => {
+          const dist = Math.abs(i - j);
+          if (dist === 0) {
+            it.style.transform = 'translateY(-10px) scale(1.35)';
+          } else if (dist === 1) {
+            it.style.transform = 'translateY(-5px) scale(1.15)';
+          } else if (dist === 2) {
+            it.style.transform = 'translateY(-2px) scale(1.05)';
+          } else {
+            it.style.transform = '';
+          }
+        });
+      });
+
+      item.addEventListener('mouseleave', () => {
+        items.forEach(it => { it.style.transform = ''; });
+      });
+    });
+  }
+
+  // ===================== PARTICLE TEXT HERO NAME =====================
+  function initParticleText() {
+    const canvas = document.getElementById('particleNameCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const heroName = canvas.closest('.hero-name');
+    if (!heroName) return;
+
+    function resize() {
+      canvas.width = heroName.offsetWidth;
+      canvas.height = heroName.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const particles = [];
+    const particleCount = 60;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        size: 1 + Math.random() * 2,
+        hue: 180 + Math.random() * 60,
+      });
+    }
+
+    let mouseX = -1000, mouseY = -1000;
+
+    heroName.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    heroName.addEventListener('mouseleave', () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        // Repel from mouse
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 80) {
+          const force = (80 - dist) / 80;
+          p.vx += (dx / dist) * force * 2;
+          p.vy += (dy / dist) * force * 2;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Friction
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+
+        // Wrap around
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 100%, 70%, 0.7)`;
+        ctx.fill();
+      });
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 60) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0,240,255,${0.15 * (1 - dist / 60)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
+  // ===================== 3D HOLOGRAPHIC CARD =====================
+  function initHoloCard() {
+    const card = document.getElementById('holoCard');
+    if (!card) return;
+    const inner = card.querySelector('.holo-card-inner');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -12;
+      const rotateY = ((x - centerX) / centerX) * 12;
+
+      inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+
+      // Move shine with cursor
+      const shine = card.querySelector('.holo-shine');
+      if (shine) {
+        shine.style.left = `${(x / rect.width) * 100 - 30}%`;
+        shine.style.transition = 'none';
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      inner.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+      inner.style.transition = 'transform 0.5s ease';
+      const shine = card.querySelector('.holo-shine');
+      if (shine) {
+        shine.style.left = '-100%';
+        shine.style.transition = 'left 0.6s ease';
+      }
+    });
+
+    card.addEventListener('mouseenter', () => {
+      inner.style.transition = 'none';
+    });
+  }
+
+  // ===================== AI CHAT BOT WIDGET =====================
+  function initChatBot() {
+    const toggle = document.getElementById('chatBotToggle');
+    const win = document.getElementById('chatBotWindow');
+    const close = document.getElementById('chatBotClose');
+    const input = document.getElementById('chatBotInput');
+    const send = document.getElementById('chatBotSend');
+    const msgs = document.getElementById('chatBotMessages');
+    const chips = document.querySelectorAll('.chatbot-chip');
+    if (!toggle || !win) return;
+
+    // Knowledge base
+    const kb = {
+      skills: "Jomin's core skills include <span class='accent'>Java, Spring Boot, React.js, REST APIs, Jenkins, Docker, Git, MySQL, Oracle, JBoss EAP, MVC</span>. He also works with JavaScript, HTML/CSS, and agile methodologies.",
+      experience: "Jomin works as a <span class='accent'>Full Stack Software Engineer</span> at <span class='accent'>SunTec Business Solutions</span>, Trivandrum. He has <span class='accent'>3+ years</span> of experience building enterprise-grade banking & fintech applications.",
+      projects: "Notable projects include: <span class='accent'>Xelerate Platform</span> (enterprise pricing & billing for banks), <span class='accent'>REST API Microservices</span> (Java/Spring Boot), and <span class='accent'>CI/CD Pipeline Automation</span> (Jenkins + Docker). Check the Projects section for more!",
+      education: "Jomin holds a <span class='accent'>B.Tech in Computer Science</span> from <span class='accent'>Amal Jyothi College of Engineering</span>, Kanjirappally (2017-2021).",
+      contact: "You can reach Jomin via email at <span class='accent'>jominachu001@gmail.com</span> or connect on <span class='accent'>LinkedIn</span> and <span class='accent'>GitHub</span>. Use the Contact section to send a message directly!",
+      hello: "Hey there! 👋 Nice to meet you. I'm here to help you learn about Jomin. Try asking about his skills, experience, or projects!",
+      hi: "Hello! 👋 Ask me anything about Jomin — his tech stack, work experience, or how to reach him.",
+      who: "Jomin K Mathew is a <span class='accent'>Full Stack Software Engineer</span> specializing in Java, Spring Boot, React.js, and enterprise banking applications at SunTec Business Solutions.",
+      java: "Jomin is highly proficient in <span class='accent'>Java (8+)</span>, including <span class='accent'>Spring Boot, Spring MVC, Hibernate/JPA</span>, and enterprise patterns. It's his primary backend language.",
+      react: "Jomin builds responsive UIs with <span class='accent'>React.js</span>, including hooks, context API, component architecture, and integration with REST backends.",
+      docker: "Jomin uses <span class='accent'>Docker</span> for containerized deployments and <span class='accent'>Jenkins</span> for CI/CD pipelines, ensuring smooth automated builds and releases.",
+      resume: "You can download Jomin's resume from the hero section of this portfolio — look for the <span class='accent'>Download Resume</span> button at the top!",
+      location: "Jomin is based in <span class='accent'>Trivandrum (Thiruvananthapuram), Kerala, India</span>.",
+      hobby: "When not coding, Jomin enjoys exploring new technologies, contributing to open-source, and staying up-to-date with the latest in software architecture."
+    };
+
+    function findAnswer(q) {
+      const lower = q.toLowerCase().trim();
+      // Direct keyword matching
+      for (const [key, val] of Object.entries(kb)) {
+        if (lower.includes(key)) return val;
+      }
+      // Fuzzy matching
+      if (/spring|boot|backend|back-end/.test(lower)) return kb.java;
+      if (/front.?end|ui|html|css|javascript/.test(lower)) return kb.react;
+      if (/work|job|company|suntec|banking/.test(lower)) return kb.experience;
+      if (/learn|degree|college|study|university/.test(lower)) return kb.education;
+      if (/reach|email|mail|linkedin|github|hire|connect/.test(lower)) return kb.contact;
+      if (/tech|stack|tool|language|framework/.test(lower)) return kb.skills;
+      if (/deploy|ci|cd|jenkins|pipeline|devops/.test(lower)) return kb.docker;
+      if (/live|where|city|india|based/.test(lower)) return kb.location;
+      if (/cv|pdf|download/.test(lower)) return kb.resume;
+      if (/project|portfolio|build|app/.test(lower)) return kb.projects;
+      if (/hey|hello|sup|yo/.test(lower)) return kb.hello;
+      if (/hobby|fun|free time|interest/.test(lower)) return kb.hobby;
+      if (/who|about|tell/.test(lower)) return kb.who;
+      return "Hmm, I'm not sure about that. Try asking about Jomin's <span class='accent'>skills</span>, <span class='accent'>experience</span>, <span class='accent'>projects</span>, <span class='accent'>education</span>, or <span class='accent'>contact</span> info!";
+    }
+
+    function addMsg(text, isUser) {
+      const div = document.createElement('div');
+      div.className = `chat-msg ${isUser ? 'user' : 'bot'}`;
+      div.innerHTML = `<div class="chat-bubble">${text}</div>`;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function showTyping() {
+      const div = document.createElement('div');
+      div.className = 'chat-msg bot typing-msg';
+      div.innerHTML = '<div class="chat-bubble typing-indicator"><span></span><span></span><span></span></div>';
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    function handleSend() {
+      const q = input.value.trim();
+      if (!q) return;
+      addMsg(q, true);
+      input.value = '';
+      const typing = showTyping();
+      const delay = 400 + Math.random() * 600;
+      setTimeout(() => {
+        typing.remove();
+        addMsg(findAnswer(q), false);
+      }, delay);
+    }
+
+    toggle.addEventListener('click', () => {
+      win.classList.toggle('open');
+      if (win.classList.contains('open')) {
+        setTimeout(() => input.focus(), 400);
+      }
+    });
+
+    close.addEventListener('click', () => win.classList.remove('open'));
+    send.addEventListener('click', handleSend);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSend();
+    });
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        input.value = chip.dataset.q;
+        handleSend();
+      });
+    });
+  }
+
+  // ===================== PAGE TRANSITION SHATTER =====================
+  function initPageTransition() {
+    const overlay = document.getElementById('pageTransition');
+    if (!overlay) return;
+
+    const navLinks = document.querySelectorAll('a[href^=\"#\"]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+        overlay.classList.add('active');
+
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'auto' });
+        }, 450);
+
+        setTimeout(() => {
+          overlay.classList.remove('active');
+        }, 950);
+      });
+    });
+  }
+
+  // ===================== CINEMATIC EXPERIENCE TIMELINE =====================
+  function initCinematicTimeline() {
+    const cards = document.querySelectorAll('#experience .cinematic-card');
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const depth = parseFloat(card.dataset.depth || 0.5);
+          const delay = depth * 0.4;
+          const direction = depth < 0.5 ? -60 : 60;
+
+          card.style.transition = `opacity 0.8s ease ${delay}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`;
+          card.style.opacity = '1';
+          card.style.transform = 'translateX(0) translateY(0)';
+          observer.unobserve(card);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cards.forEach(card => {
+      const depth = parseFloat(card.dataset.depth || 0.5);
+      const startX = depth < 0.5 ? -40 : 40;
+      card.style.opacity = '0';
+      card.style.transform = `translateX(${startX}px) translateY(20px)`;
+      observer.observe(card);
+    });
+
+    // Glowing beam animation on scroll
+    const beam = document.querySelector('.exp-timeline-beam');
+    if (beam) {
+      const section = document.getElementById('experience');
+      window.addEventListener('scroll', () => {
+        const rect = section.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
+        beam.style.background = `linear-gradient(180deg, var(--neon-cyan), var(--neon-purple) ${progress * 100}%, transparent ${progress * 100 + 5}%)`;
+        beam.style.opacity = progress > 0 ? '0.25' : '0.1';
+      });
+    }
+  }
+
+  // ===================== HEXAGONAL SKILL GRID =====================
+  function initHexGrid() {
+    const cells = document.querySelectorAll('.hex-cell');
+    if (!cells.length) return;
+
+    // Staggered reveal on scroll
+    const hexObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cell = entry.target;
+          const idx = [...cells].indexOf(cell);
+          setTimeout(() => {
+            cell.classList.add('hex-visible');
+            // Animate the SVG stroke based on skill level
+            const level = parseInt(cell.dataset.level) || 0;
+            const fill = cell.querySelector('.hex-fill');
+            if (fill) {
+              // hex perimeter ≈ 340 units, offset based on level
+              const offset = 340 - (340 * level / 100);
+              fill.style.strokeDashoffset = offset;
+            }
+          }, idx * 80);
+          hexObserver.unobserve(cell);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cells.forEach(c => hexObserver.observe(c));
+
+    // Hover glow ripple: on mouseenter create a brief expanding ring
+    cells.forEach(cell => {
+      cell.addEventListener('mouseenter', () => {
+        const ring = document.createElement('span');
+        ring.className = 'hex-ring-fx';
+        ring.style.setProperty('--hex-color', getComputedStyle(cell).getPropertyValue('--hex-color'));
+        cell.appendChild(ring);
+        ring.addEventListener('animationend', () => ring.remove());
+      });
+    });
+  }
+
+  // ===================== LIVE CODE PLAYGROUND =====================
+  function initPlayground() {
+    const codeEl = document.getElementById('playgroundCode');
+    const consoleEl = document.getElementById('playgroundConsole');
+    const runBtn = document.getElementById('playgroundRun');
+    const clearBtn = document.getElementById('playgroundClear');
+    if (!codeEl || !consoleEl || !runBtn) return;
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function appendOutput(text, type) {
+      const cls = type === 'error' ? 'log-error' : type === 'warn' ? 'log-warn' : '';
+      consoleEl.innerHTML += `<span class="${cls}">${escapeHtml(text)}</span>\n`;
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+
+    runBtn.addEventListener('click', () => {
+      consoleEl.innerHTML = '';
+      const code = codeEl.value;
+
+      const origLog = console.log;
+      const origWarn = console.warn;
+      const origError = console.error;
+
+      console.log = (...args) => {
+        appendOutput(args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' '), 'log');
+        origLog.apply(console, args);
+      };
+      console.warn = (...args) => {
+        appendOutput(args.map(a => String(a)).join(' '), 'warn');
+        origWarn.apply(console, args);
+      };
+      console.error = (...args) => {
+        appendOutput(args.map(a => String(a)).join(' '), 'error');
+        origError.apply(console, args);
+      };
+
+      try {
+        const fn = new Function(code);
+        fn();
+      } catch (err) {
+        appendOutput('Error: ' + err.message, 'error');
+      }
+
+      console.log = origLog;
+      console.warn = origWarn;
+      console.error = origError;
+
+      // Flash run button green
+      runBtn.style.background = 'var(--neon-green)';
+      runBtn.style.color = 'var(--bg-deep)';
+      setTimeout(() => {
+        runBtn.style.background = '';
+        runBtn.style.color = '';
+      }, 300);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        consoleEl.innerHTML = '// Output cleared.';
+      });
+    }
+
+    // Tab key support in textarea
+    codeEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = codeEl.selectionStart;
+        const end = codeEl.selectionEnd;
+        codeEl.value = codeEl.value.substring(0, start) + '  ' + codeEl.value.substring(end);
+        codeEl.selectionStart = codeEl.selectionEnd = start + 2;
+      }
+      // Ctrl+Enter to run
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        runBtn.click();
+      }
+    });
+  }
+
+  // ===================== VOICE COMMAND NAVIGATION =====================
+  function initVoiceNav() {
+    const btn = document.getElementById('voiceBtn');
+    const feedback = document.getElementById('voiceFeedback');
+    if (!btn || !feedback) return;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      btn.title = 'Speech not supported in this browser';
+      btn.style.opacity = '0.3';
+      btn.style.cursor = 'not-allowed';
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    let isListening = false;
+
+    const commands = {
+      'home': '#hero', 'top': '#hero', 'hero': '#hero',
+      'about': '#about', 'about me': '#about',
+      'experience': '#experience', 'work': '#experience',
+      'skills': '#skills', 'tech': '#skills', 'stack': '#skills',
+      'projects': '#projects', 'project': '#projects',
+      'contact': '#contact', 'hire': '#contact', 'touch': '#contact',
+      'playground': '#playground', 'code': '#playground',
+    };
+
+    function showFeedback(html, duration) {
+      feedback.innerHTML = html;
+      feedback.classList.add('show');
+      setTimeout(() => feedback.classList.remove('show'), duration || 3000);
+    }
+
+    btn.addEventListener('click', () => {
+      if (isListening) {
+        recognition.stop();
+        return;
+      }
+
+      isListening = true;
+      btn.classList.add('listening');
+      showFeedback('<i class="fa-solid fa-ear-listen"></i> Listening... say a section name', 5000);
+
+      try {
+        recognition.start();
+      } catch(e) {
+        // Already started
+      }
+    });
+
+    recognition.onresult = (e) => {
+      const transcript = e.results[0][0].transcript.toLowerCase().trim();
+      let matched = false;
+
+      for (const [key, target] of Object.entries(commands)) {
+        if (transcript.includes(key)) {
+          const el = document.querySelector(target);
+          if (el) {
+            showFeedback(`<span class="voice-cmd">"${transcript}"</span> → <span class="voice-match">Navigating to ${key}!</span>`);
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+            matched = true;
+            break;
+          }
+        }
+      }
+
+      if (!matched) {
+        showFeedback(`<span class="voice-cmd">"${transcript}"</span> → <span class="voice-error">Not recognized. Try: home, about, skills, projects, contact</span>`, 4000);
+      }
+    };
+
+    recognition.onerror = (e) => {
+      if (e.error !== 'no-speech') {
+        showFeedback(`<span class="voice-error"><i class="fa-solid fa-xmark"></i> ${e.error}</span>`);
+      }
+    };
+
+    recognition.onend = () => {
+      isListening = false;
+      btn.classList.remove('listening');
+    };
   }
 
 });

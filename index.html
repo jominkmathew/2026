@@ -13,6 +13,65 @@
   <!-- Scroll Progress Bar -->
   <div id="scrollProgress"></div>
 
+  <!-- Film Grain Overlay -->
+  <div id="filmGrain" aria-hidden="true"></div>
+
+  <!-- Shooting Stars Container -->
+  <div id="shootingStars" aria-hidden="true"></div>
+
+  <!-- Screen Glitch Overlay -->
+  <div id="screenGlitch" aria-hidden="true"></div>
+
+  <!-- Konami Easter Egg Overlay -->
+  <div id="konamiOverlay" aria-hidden="true">
+    <canvas id="konamiCanvas"></canvas>
+    <div class="konami-text">YOU FOUND THE SECRET</div>
+  </div>
+
+  <!-- Page Transition Shatter -->
+  <div id="pageTransition" class="page-transition" aria-hidden="true">
+    <div class="shard"></div><div class="shard"></div><div class="shard"></div>
+    <div class="shard"></div><div class="shard"></div><div class="shard"></div>
+    <div class="shard"></div><div class="shard"></div><div class="shard"></div>
+    <div class="shard"></div><div class="shard"></div><div class="shard"></div>
+  </div>
+
+  <!-- Cursor Trail Canvas -->
+  <canvas id="cursorTrail" aria-hidden="true"></canvas>
+
+  <!-- Achievement Toast Container -->
+  <div id="toastContainer" aria-live="polite"></div>
+
+  <!-- Interactive Mini Terminal -->
+  <div id="miniTerminal" class="mini-terminal">
+    <div class="mini-term-header">
+      <span class="terminal-dot red"></span>
+      <span class="terminal-dot yellow"></span>
+      <span class="terminal-dot green"></span>
+      <span class="mini-term-title">visitor@jkm:~</span>
+      <button class="mini-term-toggle" id="miniTermToggle" title="Toggle Terminal"><i class="fa-solid fa-terminal"></i></button>
+    </div>
+    <div class="mini-term-body" id="miniTermBody">
+      <div class="mini-term-output" id="miniTermOutput">
+        <div class="term-line"><span class="term-system">Welcome! Type <span class="accent">'help'</span> for commands.</span></div>
+      </div>
+      <div class="mini-term-input-row">
+        <span class="term-prompt">$</span>
+        <input type="text" id="miniTermInput" class="mini-term-input" autocomplete="off" spellcheck="false" placeholder="type a command..." />
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Navigation Dock -->
+  <div id="floatingDock" class="floating-dock">
+    <a href="#hero" class="dock-item" data-label="Home"><i class="fa-solid fa-house"></i></a>
+    <a href="#about" class="dock-item" data-label="About"><i class="fa-solid fa-user"></i></a>
+    <a href="#experience" class="dock-item" data-label="Work"><i class="fa-solid fa-briefcase"></i></a>
+    <a href="#skills" class="dock-item" data-label="Skills"><i class="fa-solid fa-code"></i></a>
+    <a href="#projects" class="dock-item" data-label="Projects"><i class="fa-solid fa-diagram-project"></i></a>
+    <a href="#contact" class="dock-item" data-label="Contact"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+
   <!-- Click Spark Container -->
   <div id="clickSparks" aria-hidden="true"></div>
 
@@ -24,19 +83,44 @@
   <div id="loader">
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Running Character -->
+    <!-- Sprinting Character -->
     <div class="runner-track">
       <div class="runner" id="runner">
-        <div class="runner-head"></div>
-        <div class="runner-body">
-          <div class="runner-arm runner-arm-l"></div>
-          <div class="runner-arm runner-arm-r"></div>
-          <div class="runner-torso"></div>
-          <div class="runner-leg runner-leg-l"></div>
-          <div class="runner-leg runner-leg-r"></div>
+        <!-- Speed lines behind runner -->
+        <div class="speed-lines">
+          <span></span><span></span><span></span><span></span><span></span>
         </div>
+        <!-- Runner body -->
+        <div class="runner-figure">
+          <div class="runner-head">
+            <div class="runner-hair"></div>
+          </div>
+          <div class="runner-neck"></div>
+          <div class="runner-torso"></div>
+          <!-- Arms with upper + forearm -->
+          <div class="runner-arm runner-arm-l">
+            <div class="arm-upper"></div>
+            <div class="arm-fore"></div>
+          </div>
+          <div class="runner-arm runner-arm-r">
+            <div class="arm-upper"></div>
+            <div class="arm-fore"></div>
+          </div>
+          <!-- Legs with thigh + shin + foot -->
+          <div class="runner-leg runner-leg-l">
+            <div class="leg-thigh"></div>
+            <div class="leg-shin"></div>
+            <div class="leg-foot"></div>
+          </div>
+          <div class="runner-leg runner-leg-r">
+            <div class="leg-thigh"></div>
+            <div class="leg-shin"></div>
+            <div class="leg-foot"></div>
+          </div>
+        </div>
+        <!-- Ground effects -->
         <div class="runner-glow"></div>
-        <div class="runner-particles" id="runnerParticles"></div>
+        <div class="runner-dust" id="runnerParticles"></div>
       </div>
       <div class="runner-ground"></div>
     </div>
@@ -68,7 +152,10 @@
   <!-- Navigation -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo">
-      <img src="IMG_2657.JPG" alt="Jomin" class="nav-avatar" />
+      <div class="avatar-orbit-wrap">
+        <img src="IMG_2657.JPG" alt="Jomin" class="nav-avatar" />
+        <div class="orbit-ring"><div class="orbit-dot"></div></div>
+      </div>
     </a>
     <ul class="nav-links">
       <li><a href="#hero" data-text="HOME">HOME</a></li>
@@ -89,6 +176,7 @@
       <div class="hero-tag">&lt;engineer&gt;</div>
       <p class="hero-greeting" data-animate="fade-right">HELLO WORLD, I'M</p>
       <h1 class="hero-name" data-animate="glitch">
+        <canvas id="particleNameCanvas" aria-hidden="true"></canvas>
         <span class="name-line">Jomin K</span>
         <span class="name-line accent">Mathew</span>
       </h1>
@@ -145,6 +233,7 @@
 
   <!-- ===== ABOUT ===== -->
   <section id="about" class="section">
+    <div class="section-curtain"></div>
     <div class="container">
       <div class="section-header" data-animate="fade-up">
         <span class="section-number">01</span>
@@ -153,13 +242,25 @@
       </div>
       <div class="about-grid">
         <div class="about-image" data-animate="fade-right">
-          <div class="cyber-frame">
-            <div class="frame-corner tl"></div>
-            <div class="frame-corner tr"></div>
-            <div class="frame-corner bl"></div>
-            <div class="frame-corner br"></div>
-            <img src="IMG_2657.JPG" alt="Jomin K Mathew" class="about-photo" />
-            <div class="scan-line"></div>
+          <div class="holo-card" id="holoCard">
+            <div class="holo-card-inner">
+              <div class="holo-glitch-layer"></div>
+              <div class="holo-scanlines"></div>
+              <div class="holo-rgb-split">
+                <img src="IMG_2657.JPG" alt="" class="rgb-r" />
+                <img src="IMG_2657.JPG" alt="" class="rgb-g" />
+                <img src="IMG_2657.JPG" alt="" class="rgb-b" />
+              </div>
+              <img src="IMG_2657.JPG" alt="Jomin K Mathew" class="about-photo holo-main" />
+              <div class="holo-shine"></div>
+              <div class="holo-border-anim"></div>
+              <div class="scan-line"></div>
+              <!-- Floating data tags -->
+              <div class="holo-tag holo-tag-1"><i class="fa-solid fa-code"></i> Full Stack</div>
+              <div class="holo-tag holo-tag-2"><i class="fa-solid fa-server"></i> Java</div>
+              <div class="holo-tag holo-tag-3"><i class="fa-brands fa-react"></i> React</div>
+            </div>
+            <div class="holo-reflection"></div>
           </div>
           <div class="server-status-mini">
             <div class="status-dot pulse-green"></div>
@@ -206,6 +307,7 @@
 
   <!-- ===== EXPERIENCE — Live CI/CD Pipeline ===== -->
   <section id="experience" class="section">
+    <div class="section-curtain"></div>
     <div class="container">
       <div class="section-header" data-animate="fade-up">
         <span class="section-number">02</span>
@@ -214,7 +316,8 @@
       </div>
 
       <!-- CI/CD Pipeline Animation -->
-      <div class="pipeline-wrapper" data-animate="fade-up">
+      <div class="exp-timeline-beam"></div>
+      <div class="pipeline-wrapper cinematic-card" data-animate="fade-up" data-depth="0.3">
         <div class="pipeline-title"><i class="fa-brands fa-jenkins"></i> DEPLOYMENT PIPELINE</div>
         <div class="pipeline">
           <div class="pipeline-stage" data-stage="code">
@@ -250,7 +353,7 @@
       </div>
 
       <!-- Experience Card -->
-      <div class="exp-card" data-animate="fade-up" data-tilt>
+      <div class="exp-card cinematic-card" data-animate="fade-up" data-tilt data-depth="0.5">
         <div class="exp-header">
           <div>
             <h3 class="exp-role">Software Engineer</h3>
@@ -291,7 +394,7 @@
       </div>
 
       <!-- Education -->
-      <div class="edu-grid" data-animate="fade-up">
+      <div class="edu-grid cinematic-card" data-animate="fade-up" data-depth="0.7">
         <div class="edu-card" data-tilt>
           <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
           <h4>Master of Computer Applications</h4>
@@ -310,6 +413,7 @@
 
   <!-- ===== SKILLS — Interactive Tech Stack ===== -->
   <section id="skills" class="section">
+    <div class="section-curtain"></div>
     <div class="container">
       <div class="section-header" data-animate="fade-up">
         <span class="section-number">03</span>
@@ -414,38 +518,80 @@
         </div>
       </div>
 
-      <!-- Skill Bars -->
-      <div class="skill-bars" data-animate="fade-up">
-        <div class="skill-row">
-          <div class="skill-info"><span><i class="fa-brands fa-java"></i> Java / Spring Boot</span><span class="skill-percent">90%</span></div>
-          <div class="skill-track"><div class="skill-fill neon-fill" data-width="90%"></div></div>
+      <!-- Hexagonal Skill Grid -->
+      <div class="hex-grid-wrap" data-animate="fade-up">
+        <div class="hex-grid-title"><i class="fa-solid fa-hexagon-nodes"></i> SKILL MATRIX</div>
+        <div class="hex-grid">
+          <div class="hex-cell" data-skill="Java" data-level="95" style="--hex-color: #00f0ff">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-brands fa-java"></i></span><span class="hex-label">Java</span><span class="hex-pct">95%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Spring Boot" data-level="90" style="--hex-color: #39ff14">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-leaf"></i></span><span class="hex-label">Spring Boot</span><span class="hex-pct">90%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="React.js" data-level="85" style="--hex-color: #61dafb">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-brands fa-react"></i></span><span class="hex-label">React.js</span><span class="hex-pct">85%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="JavaScript" data-level="88" style="--hex-color: #f7df1e">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-brands fa-js"></i></span><span class="hex-label">JavaScript</span><span class="hex-pct">88%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="REST API" data-level="90" style="--hex-color: #ff6a00">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-plug"></i></span><span class="hex-label">REST API</span><span class="hex-pct">90%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Docker" data-level="80" style="--hex-color: #0db7ed">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-brands fa-docker"></i></span><span class="hex-label">Docker</span><span class="hex-pct">80%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Jenkins" data-level="75" style="--hex-color: #d33833">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-gears"></i></span><span class="hex-label">Jenkins</span><span class="hex-pct">75%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Oracle" data-level="78" style="--hex-color: #f80000">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-database"></i></span><span class="hex-label">Oracle</span><span class="hex-pct">78%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="MySQL" data-level="80" style="--hex-color: #00758f">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-dolphin"></i></span><span class="hex-label">MySQL</span><span class="hex-pct">80%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Git" data-level="85" style="--hex-color: #f05032">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-brands fa-git-alt"></i></span><span class="hex-label">Git</span><span class="hex-pct">85%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="HTML/CSS" data-level="90" style="--hex-color: #e34f26">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-brands fa-html5"></i></span><span class="hex-label">HTML/CSS</span><span class="hex-pct">90%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Redux" data-level="75" style="--hex-color: #764abc">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-arrows-rotate"></i></span><span class="hex-label">Redux</span><span class="hex-pct">75%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="Maven" data-level="78" style="--hex-color: #c71a36">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-feather"></i></span><span class="hex-label">Maven</span><span class="hex-pct">78%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="PostgreSQL" data-level="76" style="--hex-color: #336791">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-elephant"></i></span><span class="hex-label">PostgreSQL</span><span class="hex-pct">76%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
+          <div class="hex-cell" data-skill="JBoss" data-level="70" style="--hex-color: #c12766">
+            <div class="hex-inner"><span class="hex-icon"><i class="fa-solid fa-server"></i></span><span class="hex-label">JBoss</span><span class="hex-pct">70%</span></div>
+            <svg class="hex-progress" viewBox="0 0 100 100"><polygon class="hex-bg" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/><polygon class="hex-fill" points="50 2, 93 25, 93 75, 50 98, 7 75, 7 25"/></svg>
+          </div>
         </div>
-        <div class="skill-row">
-          <div class="skill-info"><span><i class="fa-brands fa-react"></i> React.js / Redux</span><span class="skill-percent">85%</span></div>
-          <div class="skill-track"><div class="skill-fill neon-fill" data-width="85%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-info"><span><i class="fa-solid fa-plug"></i> REST API / Microservices</span><span class="skill-percent">88%</span></div>
-          <div class="skill-track"><div class="skill-fill neon-fill" data-width="88%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-info"><span><i class="fa-solid fa-database"></i> Oracle / MySQL / Postgres</span><span class="skill-percent">80%</span></div>
-          <div class="skill-track"><div class="skill-fill neon-fill" data-width="80%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-info"><span><i class="fa-brands fa-docker"></i> Docker / Jenkins CI/CD</span><span class="skill-percent">78%</span></div>
-          <div class="skill-track"><div class="skill-fill neon-fill" data-width="78%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-info"><span><i class="fa-brands fa-js"></i> JavaScript / HTML / CSS</span><span class="skill-percent">85%</span></div>
-          <div class="skill-track"><div class="skill-fill neon-fill" data-width="85%"></div></div>
-        </div>
+      </div>
+
       </div>
     </div>
   </section>
 
   <!-- ===== PROJECTS — Real Projects with Live API Monitor ===== -->
   <section id="projects" class="section">
+    <div class="section-curtain"></div>
     <div class="container">
       <div class="section-header" data-animate="fade-up">
         <span class="section-number">04</span>
@@ -460,80 +606,160 @@
       <div class="projects-main">
       <div class="projects-grid">
         <div class="project-card" data-tilt data-animate="fade-up">
-          <div class="project-image">
-            <div class="project-placeholder"><i class="fa-solid fa-credit-card"></i><div class="project-pulse"></div></div>
-            <div class="project-scan"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-id">PROJECT_01</div>
-            <h4>Payment API Development</h4>
-            <p>Enterprise payment processing system with RESTful APIs handling multi-currency transactions, validation, and settlement workflows.</p>
-            <div class="project-tags">
-              <span>Spring Boot</span><span>REST API</span><span>Oracle</span><span>JBoss</span>
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-image">
+                <div class="project-placeholder"><i class="fa-solid fa-credit-card"></i><div class="project-pulse"></div></div>
+                <div class="project-scan"></div>
+              </div>
+              <div class="project-info">
+                <div class="project-id">PROJECT_01</div>
+                <h4>Payment API Development</h4>
+                <p>Enterprise payment processing system with RESTful APIs handling multi-currency transactions.</p>
+                <div class="project-tags">
+                  <span>Spring Boot</span><span>REST API</span><span>Oracle</span><span>JBoss</span>
+                </div>
+                <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-header"><i class="fa-solid fa-terminal"></i> DETAILS</div>
+              <ul class="back-details">
+                <li><span class="accent">Role:</span> Lead Developer</li>
+                <li><span class="accent">Stack:</span> Java 17, Spring Boot 3, Oracle 19c</li>
+                <li><span class="accent">Scale:</span> 50K+ transactions/day</li>
+                <li><span class="accent">Features:</span> Multi-currency, validation, settlement workflows</li>
+                <li><span class="accent">Server:</span> JBoss EAP 7.4</li>
+              </ul>
+              <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip back</div>
             </div>
           </div>
           <div class="card-border"></div>
         </div>
 
         <div class="project-card" data-tilt data-animate="fade-up">
-          <div class="project-image">
-            <div class="project-placeholder"><i class="fa-solid fa-window-restore"></i><div class="project-pulse"></div></div>
-            <div class="project-scan"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-id">PROJECT_02</div>
-            <h4>New Product UI Component</h4>
-            <p>Built a responsive UI module using React.js with Hooks, Redux state management, Axios for API calls, and React Router navigation.</p>
-            <div class="project-tags">
-              <span>React.js</span><span>Redux</span><span>Axios</span><span>Router</span>
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-image">
+                <div class="project-placeholder"><i class="fa-solid fa-window-restore"></i><div class="project-pulse"></div></div>
+                <div class="project-scan"></div>
+              </div>
+              <div class="project-info">
+                <div class="project-id">PROJECT_02</div>
+                <h4>New Product UI Component</h4>
+                <p>Responsive UI module using React.js with Hooks, Redux, Axios, and React Router.</p>
+                <div class="project-tags">
+                  <span>React.js</span><span>Redux</span><span>Axios</span><span>Router</span>
+                </div>
+                <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-header"><i class="fa-solid fa-terminal"></i> DETAILS</div>
+              <ul class="back-details">
+                <li><span class="accent">Role:</span> Frontend Developer</li>
+                <li><span class="accent">Stack:</span> React 18, Redux Toolkit, Axios</li>
+                <li><span class="accent">UI:</span> 15+ reusable components</li>
+                <li><span class="accent">Features:</span> Real-time data binding, lazy loading</li>
+                <li><span class="accent">Testing:</span> Jest + React Testing Library</li>
+              </ul>
+              <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip back</div>
             </div>
           </div>
           <div class="card-border"></div>
         </div>
 
         <div class="project-card" data-tilt data-animate="fade-up">
-          <div class="project-image">
-            <div class="project-placeholder"><i class="fa-solid fa-arrows-rotate"></i><div class="project-pulse"></div></div>
-            <div class="project-scan"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-id">PROJECT_03</div>
-            <h4>Struts → Spring Migration</h4>
-            <p>Led full migration from Struts 1 to Struts 2 and subsequently to Spring Boot, modernizing legacy codebase and improving performance.</p>
-            <div class="project-tags">
-              <span>Spring Boot</span><span>Struts</span><span>Maven</span><span>Jenkins</span>
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-image">
+                <div class="project-placeholder"><i class="fa-solid fa-arrows-rotate"></i><div class="project-pulse"></div></div>
+                <div class="project-scan"></div>
+              </div>
+              <div class="project-info">
+                <div class="project-id">PROJECT_03</div>
+                <h4>Struts → Spring Migration</h4>
+                <p>Led full migration from Struts 1 to Struts 2 and subsequently to Spring Boot.</p>
+                <div class="project-tags">
+                  <span>Spring Boot</span><span>Struts</span><span>Maven</span><span>Jenkins</span>
+                </div>
+                <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-header"><i class="fa-solid fa-terminal"></i> DETAILS</div>
+              <ul class="back-details">
+                <li><span class="accent">Role:</span> Migration Lead</li>
+                <li><span class="accent">Scope:</span> 200+ JSP pages, 80+ Action classes</li>
+                <li><span class="accent">Result:</span> 40% performance improvement</li>
+                <li><span class="accent">CI/CD:</span> Jenkins pipeline automation</li>
+                <li><span class="accent">Duration:</span> 6 months end-to-end</li>
+              </ul>
+              <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip back</div>
             </div>
           </div>
           <div class="card-border"></div>
         </div>
 
         <div class="project-card" data-tilt data-animate="fade-up">
-          <div class="project-image">
-            <div class="project-placeholder"><i class="fa-solid fa-file-pdf"></i><div class="project-pulse"></div></div>
-            <div class="project-scan"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-id">PROJECT_04</div>
-            <h4>Jasper Reports Integration</h4>
-            <p>Integrated Jasper Reports for dynamic generation of PDF/Excel reports from live database queries, with parameterized templates.</p>
-            <div class="project-tags">
-              <span>Jasper</span><span>Java</span><span>Oracle</span><span>REST</span>
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-image">
+                <div class="project-placeholder"><i class="fa-solid fa-file-pdf"></i><div class="project-pulse"></div></div>
+                <div class="project-scan"></div>
+              </div>
+              <div class="project-info">
+                <div class="project-id">PROJECT_04</div>
+                <h4>Jasper Reports Integration</h4>
+                <p>Dynamic generation of PDF/Excel reports from live database queries.</p>
+                <div class="project-tags">
+                  <span>Jasper</span><span>Java</span><span>Oracle</span><span>REST</span>
+                </div>
+                <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-header"><i class="fa-solid fa-terminal"></i> DETAILS</div>
+              <ul class="back-details">
+                <li><span class="accent">Role:</span> Backend Developer</li>
+                <li><span class="accent">Reports:</span> 20+ parameterized templates</li>
+                <li><span class="accent">Formats:</span> PDF, Excel, CSV export</li>
+                <li><span class="accent">Data:</span> Live Oracle DB queries</li>
+                <li><span class="accent">API:</span> RESTful report generation endpoint</li>
+              </ul>
+              <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip back</div>
             </div>
           </div>
           <div class="card-border"></div>
         </div>
 
         <div class="project-card" data-tilt data-animate="fade-up">
-          <div class="project-image">
-            <div class="project-placeholder"><i class="fa-solid fa-rocket"></i><div class="project-pulse"></div></div>
-            <div class="project-scan"></div>
-          </div>
-          <div class="project-info">
-            <div class="project-id">PROJECT_05</div>
-            <h4>Full Product Migration</h4>
-            <p>Complete product migration from legacy Struts 1 to Struts 2, including DB schema updates, UI overhaul, and deployment pipeline setup.</p>
-            <div class="project-tags">
-              <span>Struts 2</span><span>Docker</span><span>WildFly</span><span>Postgres</span>
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-image">
+                <div class="project-placeholder"><i class="fa-solid fa-rocket"></i><div class="project-pulse"></div></div>
+                <div class="project-scan"></div>
+              </div>
+              <div class="project-info">
+                <div class="project-id">PROJECT_05</div>
+                <h4>Full Product Migration</h4>
+                <p>Complete product migration from legacy Struts 1 to Struts 2 with full overhaul.</p>
+                <div class="project-tags">
+                  <span>Struts 2</span><span>Docker</span><span>WildFly</span><span>Postgres</span>
+                </div>
+                <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-header"><i class="fa-solid fa-terminal"></i> DETAILS</div>
+              <ul class="back-details">
+                <li><span class="accent">Role:</span> Full Stack Lead</li>
+                <li><span class="accent">Stack:</span> Struts 2, WildFly, PostgreSQL</li>
+                <li><span class="accent">Scope:</span> DB schema + UI + deployment pipeline</li>
+                <li><span class="accent">Deploy:</span> Docker + WildFly containers</li>
+                <li><span class="accent">Result:</span> Zero-downtime migration</li>
+              </ul>
+              <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Click to flip back</div>
             </div>
           </div>
           <div class="card-border"></div>
@@ -600,6 +826,7 @@
 
   <!-- ===== CONTACT ===== -->
   <section id="contact" class="section">
+    <div class="section-curtain"></div>
     <div class="container">
       <div class="section-header" data-animate="fade-up">
         <span class="section-number">05</span>
@@ -658,6 +885,92 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== LIVE CODE PLAYGROUND ===== -->
+  <section id="playground" class="section">
+    <div class="section-curtain"></div>
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-number">06</span>
+        <h2 class="section-title">CODE<span class="accent">_PLAYGROUND</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="playground-wrap" data-animate="fade-up">
+        <div class="playground-editor">
+          <div class="playground-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="playground-tab"><i class="fa-brands fa-js"></i> script.js</span>
+            <button class="playground-run" id="playgroundRun"><i class="fa-solid fa-play"></i> RUN</button>
+          </div>
+          <textarea id="playgroundCode" spellcheck="false" autocomplete="off">// 🚀 Try editing this code and hit RUN!
+
+const skills = ['Java', 'Spring Boot', 'React', 'Docker'];
+let output = '\n👨‍💻 Jomin\'s Tech Stack:\n';
+output += '='.repeat(25) + '\n';
+
+skills.forEach((skill, i) => {
+  const bar = '█'.repeat((i + 1) * 3);
+  output += `  ${skill.padEnd(12)} ${bar}\n`;
+});
+
+output += '\n✨ Full Stack Engineer Ready!';
+console.log(output);</textarea>
+        </div>
+        <div class="playground-output">
+          <div class="playground-output-header">
+            <span><i class="fa-solid fa-terminal"></i> Console Output</span>
+            <button class="playground-clear" id="playgroundClear">CLEAR</button>
+          </div>
+          <pre id="playgroundConsole" class="playground-console">// Output will appear here...</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Chat Bot Widget -->
+  <div id="chatBot" class="chatbot">
+    <button class="chatbot-toggle" id="chatBotToggle" aria-label="Open Chatbot">
+      <i class="fa-solid fa-robot"></i>
+      <span class="chatbot-pulse"></span>
+    </button>
+    <div class="chatbot-window" id="chatBotWindow">
+      <div class="chatbot-header">
+        <div class="chatbot-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div>
+          <div class="chatbot-name">JKM Assistant</div>
+          <div class="chatbot-status"><span class="status-dot pulse-green"></span> Online</div>
+        </div>
+        <button class="chatbot-close" id="chatBotClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="chatbot-messages" id="chatBotMessages">
+        <div class="chat-msg bot">
+          <div class="chat-bubble">Hey! I'm Jomin's AI assistant. Ask me about his <span class="accent">skills</span>, <span class="accent">experience</span>, <span class="accent">projects</span>, or <span class="accent">contact</span> info!</div>
+        </div>
+      </div>
+      <div class="chatbot-input-row">
+        <input type="text" id="chatBotInput" placeholder="Ask me anything..." autocomplete="off" />
+        <button id="chatBotSend"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+      <div class="chatbot-suggestions" id="chatBotSuggestions">
+        <button class="chatbot-chip" data-q="skills">Skills</button>
+        <button class="chatbot-chip" data-q="experience">Experience</button>
+        <button class="chatbot-chip" data-q="projects">Projects</button>
+        <button class="chatbot-chip" data-q="education">Education</button>
+        <button class="chatbot-chip" data-q="contact">Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Voice Command Navigation -->
+  <div id="voiceNav" class="voice-nav">
+    <button class="voice-btn" id="voiceBtn" aria-label="Voice Navigation">
+      <i class="fa-solid fa-microphone"></i>
+      <div class="voice-ripple"></div>
+    </button>
+    <div class="voice-feedback" id="voiceFeedback"></div>
+  </div>
 
   <!-- Back to Top Rocket -->
   <button id="backToTop" aria-label="Back to top">
