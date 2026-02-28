@@ -1691,7 +1691,7 @@ document.addEventListener('DOMContentLoaded', () => {
       skills: "Jomin's core skills include <span class='accent'>Java, Spring Boot, React.js, REST APIs, Jenkins, Docker, Git, MySQL, Oracle, JBoss EAP, MVC</span>. He also works with JavaScript, HTML/CSS, and agile methodologies.",
       experience: "Jomin works as a <span class='accent'>Full Stack Software Engineer</span> at <span class='accent'>SunTec Business Solutions</span>, Trivandrum. He has <span class='accent'>3+ years</span> of experience building enterprise-grade banking & fintech applications.",
       projects: "Notable projects include: <span class='accent'>Xelerate Platform</span> (enterprise pricing & billing for banks), <span class='accent'>REST API Microservices</span> (Java/Spring Boot), and <span class='accent'>CI/CD Pipeline Automation</span> (Jenkins + Docker). Check the Projects section for more!",
-      education: "Jomin holds a <span class='accent'>B.Tech in Computer Science</span> from <span class='accent'>Amal Jyothi College of Engineering</span>, Kanjirappally (2017-2021).",
+      education: "Jomin holds an <span class='accent'>MCA (Master of Computer Applications)</span> from <span class='accent'>TKM College of Engineering</span>.",
       contact: "You can reach Jomin via email at <span class='accent'>jominachu001@gmail.com</span> or connect on <span class='accent'>LinkedIn</span> and <span class='accent'>GitHub</span>. Use the Contact section to send a message directly!",
       hello: "Hey there! 👋 Nice to meet you. I'm here to help you learn about Jomin. Try asking about his skills, experience, or projects!",
       hi: "Hello! 👋 Ask me anything about Jomin — his tech stack, work experience, or how to reach him.",
