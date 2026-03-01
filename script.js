@@ -1863,8 +1863,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===================== SKILL CARD TAP TOGGLE =====================
   function initSkillCardTap() {
     const cards = document.querySelectorAll('.skill-cat-card');
+    // Destroy any VanillaTilt auto-init on skill cards (CDN auto-inits [data-tilt])
     cards.forEach(card => {
-      card.addEventListener('click', () => {
+      if (card.vanillaTilt) {
+        card.vanillaTilt.destroy();
+      }
+    });
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Don't toggle if user clicked a link inside the card
+        if (e.target.closest('a')) return;
         // Close other open cards
         cards.forEach(c => { if (c !== card) c.classList.remove('code-open'); });
         card.classList.toggle('code-open');

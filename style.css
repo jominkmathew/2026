@@ -2591,12 +2591,6 @@ ul { list-style: none; }
   padding: 0 20px;
 }
 
-.skill-cat-card:hover .live-code {
-  max-height: 0;
-  opacity: 0;
-  padding: 0 20px;
-}
-
 @media (hover: hover) {
   .skill-cat-card:hover .live-code {
     max-height: 300px;
@@ -2605,11 +2599,11 @@ ul { list-style: none; }
   }
 }
 
-/* Tap-to-toggle on touch devices */
+/* Tap-to-toggle (works on all devices) */
 .skill-cat-card.code-open .live-code {
-  max-height: 300px;
-  opacity: 1;
-  padding: 16px 20px;
+  max-height: 300px !important;
+  opacity: 1 !important;
+  padding: 16px 20px !important;
 }
 
 .live-code pre {
