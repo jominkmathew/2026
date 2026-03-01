@@ -3993,8 +3993,8 @@ footer {
     border-radius: 16px 16px 0 0;
   }
 
-  .voice-nav { bottom: 70px; right: 16px; }
-  .voice-btn { width: 42px; height: 42px; font-size: 1rem; }
+  .voice-nav { bottom: 80px; right: 16px; z-index: 10001; }
+  .voice-btn { width: 46px; height: 46px; font-size: 1.1rem; }
   .voice-feedback {
     white-space: normal;
     min-width: 160px;
@@ -4044,7 +4044,7 @@ footer {
   position: fixed;
   bottom: 24px;
   right: 90px;
-  z-index: 9997;
+  z-index: 10001;
 }
 
 .voice-btn {
