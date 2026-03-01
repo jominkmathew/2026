@@ -1862,9 +1862,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===================== SKILL CARD TAP TOGGLE =====================
   function initSkillCardTap() {
-    // Only enable on touch devices
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) return;
-
     const cards = document.querySelectorAll('.skill-cat-card');
     cards.forEach(card => {
       card.addEventListener('click', () => {
