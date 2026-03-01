@@ -2605,6 +2605,13 @@ ul { list-style: none; }
   }
 }
 
+/* Tap-to-toggle on touch devices */
+.skill-cat-card.code-open .live-code {
+  max-height: 300px;
+  opacity: 1;
+  padding: 16px 20px;
+}
+
 .live-code pre {
   font-family: var(--font-mono);
   font-size: .65rem;

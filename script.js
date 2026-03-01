@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPageTransition();
     initCinematicTimeline();
     initHexGrid();
+    initSkillCardTap();
     initPlayground();
     initVoiceNav();
   }
@@ -1857,6 +1858,21 @@ document.addEventListener('DOMContentLoaded', () => {
         beam.style.opacity = progress > 0 ? '0.25' : '0.1';
       });
     }
+  }
+
+  // ===================== SKILL CARD TAP TOGGLE =====================
+  function initSkillCardTap() {
+    // Only enable on touch devices
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) return;
+
+    const cards = document.querySelectorAll('.skill-cat-card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        // Close other open cards
+        cards.forEach(c => { if (c !== card) c.classList.remove('code-open'); });
+        card.classList.toggle('code-open');
+      });
+    });
   }
 
   // ===================== HEXAGONAL SKILL GRID =====================
