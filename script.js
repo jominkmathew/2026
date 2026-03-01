@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Disable tilt on touch devices — causes janky behaviour
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
-    const tiltElements = document.querySelectorAll('[data-tilt]');
+    const tiltElements = document.querySelectorAll('[data-tilt], .skill-cat-card');
     if (typeof VanillaTilt !== 'undefined') {
       VanillaTilt.init(tiltElements, {
         max: 6,
@@ -1863,12 +1863,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===================== SKILL CARD TAP TOGGLE =====================
   function initSkillCardTap() {
     const cards = document.querySelectorAll('.skill-cat-card');
-    // Destroy any VanillaTilt auto-init on skill cards (CDN auto-inits [data-tilt])
-    cards.forEach(card => {
-      if (card.vanillaTilt) {
-        card.vanillaTilt.destroy();
-      }
-    });
+    // Destroy VanillaTilt on touch devices only (it blocks tap events)
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouch) {
+      cards.forEach(card => {
+        if (card.vanillaTilt) card.vanillaTilt.destroy();
+      });
+    }
     cards.forEach(card => {
       card.addEventListener('click', (e) => {
         // Don't toggle if user clicked a link inside the card
