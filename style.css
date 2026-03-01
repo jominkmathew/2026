@@ -1507,6 +1507,7 @@ ul { list-style: none; }
   position: relative; overflow: hidden;
   padding: 80px 24px 40px;
   z-index: 2;
+  background: var(--bg-deep);
 }
 
 .hero-content { max-width: 800px; z-index: 2; }
@@ -3928,9 +3929,6 @@ footer {
   /* Live code pre wrap */
   .live-code pre { white-space: pre-wrap; word-break: break-word; }
 
-  /* Touch devices: show code always since hover unreliable */
-  .skill-cat-card .live-code { max-height: 150px; opacity: 1; }
-
   /* Mini terminal responsive */
   .mini-terminal { width: calc(100vw - 40px); max-width: 340px; }
 
@@ -4031,9 +4029,6 @@ footer {
   /* Larger tap targets */
   .nav-link { padding: 10px 14px; }
   .btn { min-height: 48px; padding: 14px 28px; }
-
-  /* Disable hover-dependent reveals — show code always */
-  .skill-cat-card .live-code { max-height: 150px; opacity: 1; }
 
   /* Disable magnetic buttons effect (needs JS too) */
   .magnetic-wrap { transform: none !important; }
@@ -4136,3 +4131,5 @@ footer {
 .voice-feedback .voice-error {
   color: var(--neon-pink);
 }
+
+
