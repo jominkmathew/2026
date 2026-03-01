@@ -3153,6 +3153,7 @@ footer {
   .projects-layout { grid-template-columns: 1fr; }
   .projects-side { position: static; flex-direction: row; flex-wrap: wrap; }
   .projects-side > * { flex: 1; min-width: 260px; }
+  .about-image { overflow: hidden; }
 }
 
 @media (max-width: 640px) {
@@ -3455,14 +3456,6 @@ footer {
 @keyframes typingDot {
   0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
   30%           { transform: translateY(-6px); opacity: 1; }
-}
-
-@media (max-width: 480px) {
-  .chatbot-window {
-    width: calc(100vw - 48px);
-    max-height: 400px;
-  }
-  .holo-tag { display: none; }
 }
 
 /* ================================================================
@@ -3911,6 +3904,139 @@ footer {
   .hex-cell { width: 80px; height: 90px; }
   .hex-icon { font-size: 1.1rem; }
   .hex-label { font-size: 0.5rem; }
+
+  /* Grid overflow fixes */
+  .skill-categories { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+
+  /* Holo tags overflow outside card on single col */
+  .holo-tag { display: none; }
+
+  /* Reduce heavy padding/margins */
+  .section-header { margin-bottom: 40px; }
+  .exp-card { padding: 22px 18px; }
+  .pipeline-wrapper { padding: 18px 14px; }
+  .card-back { padding: 22px 18px; }
+  .edu-card { padding: 22px 18px; }
+
+  /* Pipeline stages grid for mid-range */
+  .pipeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; justify-items: center; }
+  .pipeline-connector { display: none; }
+  .pipeline-stage { min-width: unset; width: 100%; }
+
+  /* Live code pre wrap */
+  .live-code pre { white-space: pre-wrap; word-break: break-word; }
+
+  /* Touch devices: show code always since hover unreliable */
+  .skill-cat-card .live-code { max-height: 150px; opacity: 1; }
+
+  /* Mini terminal responsive */
+  .mini-terminal { width: calc(100vw - 40px); max-width: 340px; }
+
+  /* Fix cursor on touch screens */
+  #cursor, #cursor-trail { display: none; }
+  body { cursor: auto; }
+}
+
+/* ---------- SMALL MOBILE (480px) ---------- */
+@media (max-width: 480px) {
+  /* Container tighter padding */
+  .container { padding: 0 16px; }
+
+  /* Reduce section padding */
+  .section { padding: 50px 0; }
+
+  /* Hero text overflow fixes */
+  .hero-greeting { letter-spacing: 2px; font-size: 0.75rem; }
+  .hero-role { letter-spacing: 1px; font-size: 0.85rem; }
+  .hero-terminal .terminal-body { font-size: 0.75rem; }
+  .name-line { font-size: 1.8rem; }
+
+  /* Stats */
+  .stat-number { font-size: 1.5rem; }
+
+  /* Experience */
+  .exp-card { padding: 16px 14px; }
+  .exp-role { font-size: 1.1rem; letter-spacing: 1px; }
+  .exp-date { padding: 4px 10px; font-size: 0.7rem; }
+
+  /* Hex grid tighter */
+  .hex-cell { width: 68px; height: 76px; }
+  .hex-icon { font-size: 1rem; }
+  .hex-label { font-size: 0.45rem; }
+
+  /* Konami */
+  .konami-text { letter-spacing: 2px; }
+
+  /* Achievement toasts centered */
+  #toastContainer { right: 10px; left: 10px; align-items: center; }
+  .achievement-toast { max-width: calc(100vw - 40px); }
+
+  /* Fixed elements repositioning to avoid overlap */
+  .floating-dock {
+    gap: 2px;
+    padding: 6px 10px;
+    bottom: 12px;
+  }
+  .dock-item { width: 34px; height: 34px; font-size: 0.85rem; }
+
+  .chatbot { bottom: 70px; left: 16px; }
+  .chatbot-toggle { width: 48px; height: 48px; font-size: 1rem; }
+
+  .chatbot-window {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 70vh;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .voice-nav { bottom: 70px; right: 16px; }
+  .voice-btn { width: 42px; height: 42px; font-size: 1rem; }
+  .voice-feedback {
+    white-space: normal;
+    min-width: 160px;
+    right: 0;
+  }
+
+  #backToTop { right: 16px; bottom: 70px; width: 40px; height: 40px; font-size: 0.9rem; }
+
+  .mini-terminal {
+    width: calc(100vw - 32px);
+    max-width: 300px;
+    bottom: 130px;
+    left: 16px;
+  }
+
+  /* Contact terminal text wrap */
+  .terminal-output { word-break: break-all; }
+  .contact-terminal-body { padding: 12px; }
+
+  /* Project cards */
+  .card-back { padding: 16px 14px; }
+  .card-back h3 { font-size: 1rem; }
+
+  /* Edu cards */
+  .edu-card { padding: 16px 14px; }
+}
+
+/* ---------- TOUCH DEVICE ENHANCEMENTS ---------- */
+@media (pointer: coarse) {
+  /* Disable custom cursor on all touch devices */
+  #cursor, #cursor-trail { display: none !important; }
+  body { cursor: auto !important; }
+
+  /* Larger tap targets */
+  .nav-link { padding: 10px 14px; }
+  .btn { min-height: 48px; padding: 14px 28px; }
+
+  /* Disable hover-dependent reveals — show code always */
+  .skill-cat-card .live-code { max-height: 150px; opacity: 1; }
+
+  /* Disable magnetic buttons effect (needs JS too) */
+  .magnetic-wrap { transform: none !important; }
 }
 
 /* ---------- VOICE COMMAND NAVIGATION ---------- */

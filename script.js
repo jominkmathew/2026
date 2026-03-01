@@ -277,6 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===================== CUSTOM CURSOR =====================
   function initCursor() {
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const cursor = document.getElementById('cursor');
     const trail = document.getElementById('cursor-trail');
 
@@ -426,6 +429,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===================== VANILLA TILT =====================
   function initTilt() {
+    // Disable tilt on touch devices — causes janky behaviour
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const tiltElements = document.querySelectorAll('[data-tilt]');
     if (typeof VanillaTilt !== 'undefined') {
       VanillaTilt.init(tiltElements, {
@@ -1022,6 +1028,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===================== MAGNETIC BUTTONS =====================
   function initMagneticButtons() {
+    // Disable magnetic effect on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const magneticEls = document.querySelectorAll('.btn, .social-link');
 
     magneticEls.forEach(el => {
@@ -1176,6 +1185,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===================== CURSOR TRAIL PARTICLES =====================
   function initCursorTrail() {
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const canvas = document.getElementById('cursorTrail');
     if (!canvas) return;
 
