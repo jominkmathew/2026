@@ -2592,9 +2592,17 @@ ul { list-style: none; }
 }
 
 .skill-cat-card:hover .live-code {
-  max-height: 300px;
-  opacity: 1;
-  padding: 16px 20px;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 20px;
+}
+
+@media (hover: hover) {
+  .skill-cat-card:hover .live-code {
+    max-height: 300px;
+    opacity: 1;
+    padding: 16px 20px;
+  }
 }
 
 .live-code pre {
